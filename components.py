@@ -325,3 +325,36 @@ def display_contact_llm_response(llm_response):
         content["file_info_list"] = file_info_list
 
     return content
+
+
+# components.py
+
+def display_sidebar():
+    """左サイドバー（利用目的 + 入力例）"""
+    with st.sidebar:
+        st.markdown("### 利用目的")
+        st.session_state.mode = st.radio(
+            "",
+            [ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
+            index=0
+        )
+
+        # --- 各モードの説明 ---
+        if st.session_state.mode == ct.ANSWER_MODE_1:
+            st.markdown("**【「社内文書検索」を選択した場合】**")
+            st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
+            st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True)
+        else:
+            st.markdown("**【「社内問い合わせ」を選択した場合】**")
+            st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
+            st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True)
+
+
+def display_main_intro():
+    """中央メインエリア（タイトル＋案内）"""
+    st.markdown(f"## {ct.APP_NAME}")
+    st.success(
+        "こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。"
+        "サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。"
+    )
+    st.warning("具体的に入力したほうが期待通りの回答を得やすいです。")
