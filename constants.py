@@ -120,4 +120,4 @@ DISP_ANSWER_ERROR_MESSAGE = "回答表示に失敗しました。"
 # ============================================
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 50
-RETRIEVER_K = 5
+RETRIEVER_K = 10
